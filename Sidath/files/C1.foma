@@ -1,0 +1,41 @@
+### sinhalaC1.foma ###
+
+read lexc C1.lexc
+define Lexicon;
+
+
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [ව ත ි | ව න ් න ී ය |ව න ් න ෙ ම ි | ව න ් න ෙ ම ු | ව න ් න ෙ හ ි | ව න ් න ේ ය |
+ ව න ් න ෝ ය | ව ම ි | ව ම ු | ව ය ි | ව හ ි | ව හ ු | ව න ් න ට | ව ම ි න ් | ව න ් න ේ ];    
+
+define C [ප න ් | ප ල ් ල ා |ු ණ ු  | ෙ හ ි | ෙ හ ු | ව ෙ ය ි | ව ෙ ත ි | ව ේ |  ි ය |  ව ා | ව න ් න ේ]; 
+
+define D [ ් ද | ් ද ෙ ම ි| ් ද ෙ ම ු | ් ද ෙ හ ි | ් ද ෙ හ ු | ් ද ේ ය | ් ද ා ය | ් ද ෝ ය | ් ද ො ත ් | ් ද ු ව ේ];
+
+
+
+######### Rewrite rules
+
+define CCRule1  ි -> 0 || _ "^" [B | C | D | ඳ] ;
+define CCRule2  ඳ -> න ් ද || _ "^" [B ];
+define CCRule5  ඳ -> න || _ "^" [D];
+define CCRule3  අ -> ඇ ||  _ A "^" [C | D |ඳ] ;
+define CCRule4  [..] -> ැ || A _ A "^" [C | D | ඳ];
+define CCRule6  ඳ -> 0 || _ "^" ඳ;
+
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define C1Grammar 	Lexicon .o.
+		CCRule1		.o.
+              	CCRule3		.o.
+		CCRule4		.o.
+		CCRule2		.o.
+		CCRule5		.o.
+		Cleanup;
+
+regex C1Grammar;
+
+

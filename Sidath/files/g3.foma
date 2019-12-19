@@ -1,0 +1,30 @@
+### Sinhala.foma ###
+
+# Vowels
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [ ු න ් | ු න ් න ෙ ම ි | ු න ් න ෙ ම ු | ු න ් න ෙ හ ි | ු න ් න ෙ හ ු | ු න ් න ේ ය | ු න ් න ා ය | ු න ් න ෝ ය | ී | ි ය න ් | ි ය ල ් ල ා | ි ය | ු න් න ො ත ් | ු න් න ේ];
+
+define C [ව ත ි | ව න ් න ී ය | ව න ් න ෙ ම ි | ව න ් න ෙ ම ු | ව න ් න ෙ හ ි | ව න ් න ෙ හ ු | ව න ් න ේ ය | ව න ් න ෝ ය | ව ම ි | ව ම ු | ව ය ි | ව හ ි | ව හ ු | ව න ් න ට | ව ම ි න ්];
+
+
+
+read lexc g3.lexc
+define Lexicon;
+
+######### Rewrite rules
+
+###
+define MoradeClass          ෙ -> 0 || ර A _ "^" [B] ;
+
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define ClassE1Grammar 	Lexicon               .o.
+                        MoradeClass           .o.
+               	        Cleanup;
+
+regex ClassE1Grammar;
+
+

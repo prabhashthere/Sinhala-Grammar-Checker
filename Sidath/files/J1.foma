@@ -1,0 +1,32 @@
+### sinhalaC1.foma ###
+
+read lexc J1.lexc
+define Lexicon;
+
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [ ා ප න ් | ා ප ල ් ල ා | ා | ෑ |​ෑ ව ෙ ම ි |​ෑ ව ෙ ම ු |ෑ ව ෙ හ ි |ෑ ව ෙ හ ු |ෑ ව ා ය | ෑ ව ේ ය |ෑ ව ෝ​ ය |ෑ ව ෝ​ ත් | ෑ ව ේ];
+
+define C [ව ු ණ ු | ව ේ |ව ෙ ම ි |ව ෙ ම ු |ව ෙ හ ි |ව ෙ හ ු |ව ෙ ය ි|ව ෙ ත ි | ව ි ය];
+
+
+
+
+######### Rewrite rules
+
+define CJRule1  ා -> 0 || _ "^" B  ;
+define CJRule2  [..] -> ැ || A _ "^" C ;
+define CJRule3  ා -> ෑ || _ "^" C ;
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define J1Grammar 	Lexicon .o.
+		CJRule1		.o.
+		CJRule2		.o.
+              	CJRule3		.o.
+		Cleanup;
+
+regex J1Grammar;
+
+

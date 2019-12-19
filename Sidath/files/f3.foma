@@ -1,0 +1,35 @@
+### Sinhala.foma ###
+
+# Vowels
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [ග ෙ න];
+
+define C [ව | ව ත ි | ව න ් න ී ය | ව න ් න ෙ ම ි | ව න ් න ෙ ම ු | ව න ් න ෙ හ ි | ව න ් න ෙ හ ු | ව න ් න ේ ය | ව න ් න ෝ ය | ව ම ි | ව ම ු | ව ය ි | ව හ ි | ව හ ු | ව න ් න ට | ව ම ි න ්];
+
+define D [ ි ය | ු න ො ත ් | ු න ේ];
+
+
+
+read lexc f3.lexc
+define Lexicon;
+
+######### Rewrite rules
+
+###
+define UganiAClass          ි -> ් || A _ "^" C ;
+define UganiBClass          උ ග න ි -> ඉ || _ "^" B ;
+define UganiCClass          උ ග න ි -> ඉ ග ෙ න || _ "^" D ;
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define ClassE1Grammar 	Lexicon                 .o.
+                        UganiAClass             .o.
+                        UganiBClass             .o.
+                        UganiCClass             .o.
+               	        Cleanup;
+
+regex ClassE1Grammar;
+
+

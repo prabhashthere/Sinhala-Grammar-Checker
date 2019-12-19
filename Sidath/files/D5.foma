@@ -1,0 +1,33 @@
+### sinhalaC1.foma ###
+
+read lexc D5.lexc
+define Lexicon;
+
+
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [ප න ් | ප ල ් ල ා | ව |  ව ත  ි | ව න ් න ී ය | ව න ් න ෙ ම ි | ව න ් න ෙ ම ු | ව න ් න ෙ හ ි| ව න ් න ෙ හ ු| ව න ් න ේ ය | ව න ් න ෝ ය | ව න ් න ට | ව ම ි න ්| ව ා | ව න ් න ේ]; 
+
+
+define C [ ී |ව ෙ ය ි |ව ෙ  ි|ව ේ];   #####ඇමද 
+
+
+
+######### Rewrite rules
+
+define CD5Rule1  ි -> 0 || _ "^" [B | C ] ;
+#define CD5Rule2   අ -> ඇ || .#. _ ?* "^" C ;
+#define CD5Rule3  [..] -> ැ || .#. A _ A ?* "^" C ;
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define D5Grammar 	Lexicon .o.
+		CD5Rule1		.o.
+		#CD5Rule3		.o.
+              #	CD5Rule2		.o.
+		Cleanup;
+
+regex D5Grammar;
+
+

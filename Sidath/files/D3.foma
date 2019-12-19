@@ -1,0 +1,32 @@
+### sinhalaC1.foma ###
+
+read lexc D3.lexc
+define Lexicon;
+
+
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [ප න ් | ප ල ් ල ා | ව |  ව ත  ි | ව න ් න ී ය | ව න ් න ෙ ම ි | ව න ් න ෙ ම ු | ව න ් න ෙ හ ි| ව න ් න ෙ හ ු| ව න ් න ේ ය | ව න ් න ෝ ය | ව න ් න ට | ව ම ි න ් | ව ා | ව න ් න ේ]; 
+
+define C [ ු ණ ු | ූ | ු ව ෙ ම ි | ු ව ෙ ම ු| ු ව ෙ හ ි|  ු ව ෙ හ ු | ු ව ේ ය| ු ව ෝ ය | ු ව ා ය | ෙ හ ි | ෙ හ ු|ව ෙ ය ි |ව ෙ ත ි |ව ේ |ි ය |ු ව ො ත ් | ු ව ේ |  ි ය];   #####ඇමද 
+
+
+
+######### Rewrite rules
+
+define CD3Rule1  ි -> 0 || _ "^" [B | C ] ;
+#define CD3Rule2   ු ->  ි ||  _ A "^" C ;
+#define CD3Rule3  [..] -> ැ || A _ A "^" C ;
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define D3Grammar 	Lexicon .o.
+		CD3Rule1		.o.
+		#CD3Rule3		.o.
+              	#CD3Rule2		.o.
+		Cleanup;
+
+regex D3Grammar;
+
+

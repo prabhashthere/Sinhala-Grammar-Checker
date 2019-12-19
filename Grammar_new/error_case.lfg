@@ -1,0 +1,128 @@
+DEMO   SINHALA   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES ajectives.lfg adverb.lfg noun.lfg all_verb.lfg noun_real.lfg.
+  LEXENTRIES   (DEMO SINHALA) (AJECTIVE SINHALA) (ADVERB SINHALA) (NOUN SINHALA) (VERB SINHALA) (NOUN_ALL SINHALA).
+  RULES   (DEMO SINHALA).
+  CHARACTERENCODING utf-8.
+  TEMPLATES (DEMO SINHALA).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS2 CONJ-FORM LIV.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD.
+
+----
+
+DEMO   SINHALA   RULES (1.0)
+
+S --> { NP:(^SUBJ2)=!;
+        (NP:(^OBJ3)=!)
+        NVP:^=!;
+        NP:(^SUBJ)=!
+        |
+        NP:(^SUBJ)=!;
+        (NP:(^OBJ3)=!)
+        NVP:^=!
+        |
+        NP:(^SUBJ)=!
+        }
+      (OP:^=!)
+       VP:^=! .
+
+
+OP -->(NP: (^OBJ2)=! )
+      NP: (^OBJ)=! .
+
+NVP--> ADV*: ! $ (^ ADJUNCT);
+       V: (!VFORM)=nonf.
+
+VP--> {ADV*: ! $ (^ ADJUNCT) | N:(!CASE)=dat | N:(!CASE)=voc }
+      V:^=! (!VFORM)=fin.
+
+
+NP --> 	AP*: ! $ (^ ADJUNCT);
+	    N:^=! .
+
+AP -->   {A |N}
+        (COMMA).
+
+
+
+----
+DEMO   SINHALA   TEMPLATES (1.0)
+
+
+OPT-TRANS(P) = { (^ PRED) = 'P<(^SUBJ)(^OBJ)>' | (^ PRED) = 'P<(^SUBJ)>' | (^ PRED) = 'P<(^SUBJ2)(^OBJ3)>' |(^ PRED) = 'P<(^OBJ3)>'
+		       | (^ PRED) = 'P'}.
+
+TRANS(P) = { (^ PRED) = 'P<(^SUBJ)>'
+		  |  (^ PRED) = 'P' }.
+
+DI-TRANS(P) = { (^ PRED) = 'P<(^SUBJ)(^OBJ)>'
+		  |  (^ PRED) = 'P' }.
+
+TRY-TRANS(P) = { (^ PRED)='P<(^SUBJ)(^OBJ2)(^OBJ)>'
+                 | (^ PRED) = 'P' | (^ PRED) = 'P<(^SUBJ)(^OBJ)>' | (^ PRED) = 'P<(^SUBJ2)(^OBJ3)>' |(^ PRED) = 'P<(^OBJ3)>'}.
+
+
+
+TENSE(T) = (^ TENSE) = T.
+
+PERS(P T L) = {(^SUBJ NUM) = T
+              (^SUBJ PERS) = P
+              (^SUBJ CASE)=nom
+              {(^SUBJ LIV) = L | (^ UNGRAMMATICAL) = {Number_Mismatch_Due_to_Inanimacy} }
+              |
+              (^SUBJ NUM) = T
+              (^SUBJ LIV) = L
+              (^SUBJ CASE)=nom
+              {(^SUBJ PERS) = P | (^ UNGRAMMATICAL) = {Person_Mismatch} }
+              |
+              (^SUBJ LIV) = L
+              (^SUBJ PERS) = P
+              {(^SUBJ NUMB) = T | (^ UNGRAMMATICAL) = {Number_Mismatch}}
+              (^SUBJ CASE)=nom
+              |
+              (^SUBJ NUMB) = T
+              (^SUBJ PERS) = P
+              (^SUBJ LIV) = L
+              (^SUBJ CASE)=nom
+              }.
+
+PERS2(Pcase Scase P T L) ={
+                         {(^OBJ CASE)=Pcase| (^ UNGRAMMATICAL) = {Object_Case_Mismatch} }
+                         (^OBJ2 CASE)=Scase
+                         |
+
+                         (^OBJ CASE)=Pcase
+                         {(^OBJ2 CASE)=Scase| (^ UNGRAMMATICAL) = {Secondary_Object_Case_Mismatch} }
+
+                         }
+                         .
+
+
+
+
+
+VERVF(F) = (^VFORM) =F.
+
+
+----
+DEMO SINHALA LEXICON (1.0)
+
+-unknown  N * @(N %stem);
+	  A * @(ADJ %stem);
+          ADV *  @(ADV %stem);
+          ONLY.
+
+
+,         COMMA  * .
+
+
+
+
+
+
+----
+
+

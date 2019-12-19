@@ -1,0 +1,42 @@
+### sinhalaC1.foma ###
+
+read lexc E1.lexc
+define Lexicon;
+
+
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [  ව ම ි න ් |ව ත  ි | ව න ් න ී ය | ව න ් න ෙ ම ි | ව න ් න ෙ ම ු | ව න ් න ෙ හ ි | ව න ් න ෙ හ ු | ව න ් න ේ ය | ව න ් න ෝ ය  |ව ා | ව න ් න ේ]; 
+define E [ ප න ් | ප ල ් ල ා ]; 
+
+define G [ව ම ි | ව ම ු | ව ය ි | ව හ ි | ව හ ු ];  
+
+define D [ී ව ා |ා | න ් න ට |ී];
+
+define C [  ු ණ ු |ූ |ු න ෙ ම ි | ු න ෙ ම ු |ු න ෙ හ ි | ු න ෙ හ ු | ු න ා ය | ු න ේ ය | ු න ෝ ය |  ේ
+ | ෙ ම ි | ෙ ම ු | ෙ හ ි | ෙ හ ු | ෙ ය ි | ෙ ත ි | ව ෙ ය ි | ව ෙ ත ි | ව ේ |ි ය | ු ව ො ත් | ු ව ේ]; 
+
+
+
+######### Rewrite rules
+
+define CERule1  ි -> 0 || _ "^" [B |E | C | D | G] ;
+define CERule2 ත -> ත ් ත || _ "^" [B |E ];
+define CERule4 ත -> ත ්  || _ "^" [G];
+define CERule2i ක -> ක ්  || _ "^" [B | G ];
+define CERule3  [..] -> ැ || .#. A _ A ? * "^" C ;
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define E1Grammar 	Lexicon .o.
+		CERule1		.o.
+		CERule2		.o.
+		CERule2i	.o.
+              	CERule3		.o.
+		CERule4		.o.
+		Cleanup;
+
+regex E1Grammar;
+
+

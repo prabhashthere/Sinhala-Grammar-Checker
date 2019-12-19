@@ -1,0 +1,254 @@
+
+DEMO   SINHALA   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES ajectives.lfg adverb.lfg noun.lfg all_verb.lfg noun_real.lfg .
+  LEXENTRIES   (DEMO SINHALA) (AJECTIVE SINHALA) (ADVERB SINHALA) (NOUN SINHALA) (VERB SINHALA) (NOUN_ALL SINHALA).
+  RULES   (DEMO SINHALA).
+  TEMPLATES (DEMO SINHALA).
+  CHARACTERENCODING utf-8.
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM LIV.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD.
+
+----
+
+DEMO   SINHALA   RULES (1.0)
+
+S --> NP:(^SUBJ)=!;
+      VP:^=!.
+
+VP--> NFVP*
+      (NP: (^OBJ2)=! )
+	  (NP: (^OBJ)=! )
+      ADV*: ! $ (^ ADJUNCT);
+      V:^=!.
+
+NFVP--> (NFNP: ! $ (^ ADJUNCT))
+        V:(!VFORM)=nonf;
+        (COMMA).
+
+NP --> 	{PP: ! $ (^ ADJUNCT);
+	|
+	AP: ! $ (^ ADJUNCT) }*
+	N:^=! .
+
+NFNP --> 	{PP: ! $ (^ ADJUNCT);
+	|
+	AP: ! $ (^ ADJUNCT) }*
+	N:^=! {(!CASE) = acc | (!CASE) = nom |(^ UNGRAMMATICAL) = {NF_case_Mismatch}} .
+
+AP -->  ADV*: ! $ (^ ADJUNCT);
+        A
+        (COMMA).
+
+PP --> {NP: ! $ (^ ADJUNCT);
+        P: ^ = !;
+	|
+	N:^=!  (!CASE)= gen}.
+
+----
+DEMO   SINHALA   TEMPLATES (1.0)
+
+OPT-TRANS(P) = { (^ PRED) = 'P<(^SUBJ)(^OBJ)>'
+	          | (^ PRED) = 'P<(^SUBJ)>'
+		  | (^ PRED)='P<(^SUBJ)(^OBJ2)(^OBJ)>'
+		    {(^OBJ CASE) = acc | (^OBJ CASE) = nom}
+		  | (^ PRED) = 'P' }.
+
+TRANS(P) = { (^ PRED) = 'P<(^SUBJ)>'
+		  |  (^ PRED) = 'P' }.
+
+DI-TRANS(P) = { (^ PRED) = 'P<(^SUBJ)(^OBJ)>'
+                {(^OBJ CASE) = acc | (^OBJ CASE) = nom}
+		  |  (^ PRED) = 'P' }.
+
+TRY-TRANS(P ) = { (^ PRED)='P<(^SUBJ)(^OBJ2)(^OBJ)>'
+                 | (^ PRED) = 'P'
+                 |
+                  (^ PRED) = 'P<(^SUBJ)(^OBJ)>'
+
+                 }.
+
+
+TENSE(T) = (^ TENSE) = T.
+
+PERS(P T L) =   {(^SUBJ NUM) = T
+                 (^SUBJ PERS) = P
+                 (^SUBJ CASE)=nom
+                 {(^SUBJ LIV) = L | (^ UNGRAMMATICAL) = {Number_Mismatch_Due_to_Inanimacy} }
+                 |
+                 (^SUBJ NUM) = T
+                 (^SUBJ LIV) = L
+                 (^SUBJ CASE)=nom
+                 {(^SUBJ PERS) = P | (^ UNGRAMMATICAL) = {Person_Mismatch} }
+                 |
+                 (^SUBJ LIV) = L
+                 (^SUBJ PERS) = P
+                 {(^SUBJ NUMB) = T | (^ UNGRAMMATICAL) = {Number_Mismatch}}
+                 (^SUBJ CASE)=nom
+
+                 |
+                 (^SUBJ LIV) = L
+                 (^SUBJ PERS) = P
+                  (^SUBJ NUM) = T
+
+                 }.
+
+PERS2(Pcase Scase P T L) =   {(^SUBJ NUM) = T
+                   (^SUBJ PERS) = P
+                   {(^SUBJ CASE)=nom |(^SUBJ CASE)=acc}
+                   {(^SUBJ LIV) = L | (^ UNGRAMMATICAL) = {Animacy_Mismatch} }
+                   (^OBJ CASE)=Pcase
+                   (^OBJ2 CASE)=Scase
+                   |
+                   (^SUBJ NUM) = T
+                   (^SUBJ LIV) = L
+                   {(^SUBJ CASE)=nom |(^SUBJ CASE)=acc}
+                   {(^SUBJ PERS) = P | (^ UNGRAMMATICAL) = {Person_Mismatch} }
+                   (^OBJ CASE)=Pcase
+                   (^OBJ2 CASE)=Scase
+                   |
+                   (^SUBJ LIV) = L
+                   (^SUBJ PERS) = P
+                   {(^SUBJ CASE)=nom |(^SUBJ CASE)=acc}
+                   {(^SUBJ NUMB) = T | (^ UNGRAMMATICAL) = {Number_Mismatch}}
+                   (^OBJ CASE)=Pcase
+                   (^OBJ2 CASE)=Scase
+                   |
+                   (^SUBJ LIV) = L
+                   (^SUBJ PERS) = P
+
+                    (^SUBJ NUM) = T
+                    (^OBJ CASE)=Pcase
+                   (^OBJ2 CASE)=Scase
+                   |
+                   (^SUBJ LIV) = L
+                  (^SUBJ PERS) = P
+                   (^SUBJ NUM) = T
+                   {(^OBJ CASE)=Pcase | (^ UNGRAMMATICAL) = {Object_case_Mismatch}  }
+                  (^OBJ2 CASE)=Scase
+                  |
+                 (^SUBJ LIV) = L
+                (^SUBJ PERS) = P
+                 (^SUBJ NUM) = T
+                 (^OBJ CASE)=Pcase
+                {(^OBJ2 CASE)=Scase| (^ UNGRAMMATICAL) = {Secondary_Object_case_Mismatch}  }
+                   }
+                   .
+
+
+VERVF(F) = (^VFORM) =F.
+
+
+----
+DEMO SINHALA LEXICON (1.0)
+
+
+
+උඩ       P       * (^PRED)='උඩ'. 
+යට       P      * (^PRED)='යට'.
+මත       P      * (^PRED)='මත'. 
+තුළ       P      * (^PRED)='තුළ'.
+
+දිය  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE nonpast) .
+දී  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE nonpast) .
+දීපන්  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 sg yes) .
+දීපල්ලා  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 pl yes) .
+දුන්නහොත්  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE nonpast) .
+දුන්නාය  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE past) {@(PERS2 nom dat 3 sg yes) | @(PERS2 nom dat 3 pl no) | @(PERS2 nom dat 3 sg no)} .
+දුන්නු  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE past) .
+දුන්නෙමි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE past) @(PERS2 nom dat 1 sg yes) .
+දුන්නෙමු  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE past) @(PERS2 nom dat 1 pl yes) .
+දුන්නෙහි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE past) @(PERS2 nom dat 2 sg yes) .
+දුන්නෙහු  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE past) @(PERS2 nom dat 2 pl yes) .
+දුන්නේ  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE past) .
+දුන්නේය  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE past) @(PERS2 nom dat 2 sg yes) .
+දුන්නෝය  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE past) @(PERS2 nom dat 3 pl yes) .
+දෙ  V   *   @(TRY-TRANS දෙ) .
+දෙති  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 3 pl yes) .
+දෙත්වා  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) {@(PERS2 nom dat 3 sg yes) | @(PERS2 nom dat 3 pl no) | @(PERS2 nom dat 3 sg no)} .
+දෙද්දී  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE nonpast) .
+දෙන  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE nonpast) .
+දෙනලද  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE past) .
+දෙනලදී  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE past) .
+දෙනවා  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 sg yes) .
+දෙනවාලා  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 pl yes) .
+දෙනු  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 sg yes) .
+දෙනුයේ  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE nonpast) .
+දෙනුලැබූ  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE past) .
+දෙන්න  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 sg yes) .
+දෙන්නට  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE nonpast) .
+දෙන්නීය  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 sg yes) .
+දෙන්නෙමි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 1 sg yes) .
+දෙන්නෙමිවා  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 1 sg yes) .
+දෙන්නෙමු  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 1 pl yes) .
+දෙන්නෙමුවා  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 1 pl yes) .
+දෙන්නෙහි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 sg yes) .
+දෙන්නෙහිවා  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 sg yes) .
+දෙන්නේ  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE nonpast) .
+දෙන්නේය  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) {@(PERS2 nom dat 3 sg yes) | @(PERS2 nom dat 3 pl no) | @(PERS2 nom dat 3 sg no)} .
+දෙන්නෝය  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 3 pl yes) .
+දෙමි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 1 sg yes) .
+දෙමින්  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE nonpast) .
+දෙමිවා  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 1 sg yes) .
+දෙමු  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 1 pl yes) .
+දෙමුවා  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 1 pl yes) .
+දෙයි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) {@(PERS2 nom dat 3 sg yes) | @(PERS2 nom dat 3 pl no) | @(PERS2 nom dat 3 sg no)} .
+දෙව  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 sg yes) .
+දෙවති  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 3 pl yes) .
+දෙවන්නට  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE nonpast) .
+දෙවන්නීය  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 sg yes) .
+දෙවන්නෙමි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 1 sg yes) .
+දෙවන්නෙමු  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 1 pl yes) .
+දෙවන්නෙහි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 sg yes) .
+දෙවන්නෙහු  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 pl yes) .
+දෙවන්නේ  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE nonpast) .
+දෙවන්නේය  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) {@(PERS2 nom dat 3 sg yes) | @(PERS2 nom dat 3 pl no) | @(PERS2 nom dat 3 sg no)} .
+දෙවන්නෝය  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 3 pl yes) .
+දෙවමි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 1 sg yes) .
+දෙවමින්  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE nonpast) .
+දෙවමු  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 1 pl yes) .
+දෙවයි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) {@(PERS2 nom dat 3 sg yes) | @(PERS2 nom dat 3 pl no) | @(PERS2 nom dat 3 sg no)} .
+දෙවහි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 sg yes) .
+දෙවහු  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 pl yes) .
+දෙවා  V   *   @(TRY-TRANS දෙ) @(VERVF nonf) @(TENSE nonpast) .
+දෙවු  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 pl yes) .
+දෙවෙති  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE passive) @(TENSE nonpast) @(PERS2 nom dat 3 pl yes) .
+දෙවෙමි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE passive) @(TENSE nonpast) @(PERS2 nom dat 1 sg yes) .
+දෙවෙමු  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE passive) @(TENSE nonpast) @(PERS2 nom dat 1 pl yes) .
+දෙවෙයි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE passive) @(TENSE nonpast) {@(PERS2 nom dat 3 sg yes) | @(PERS2 nom dat 3 pl no) | @(PERS2 nom dat 3 sg no)} .
+දෙවෙහි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE passive) @(TENSE nonpast) @(PERS2 nom dat 2 pl yes) .
+දෙවෙහු  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE passive) @(TENSE nonpast) @(PERS2 nom dat 2 pl yes) .
+දෙවේ  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE passive) @(TENSE nonpast) {@(PERS2 nom dat 3 sg yes) | @(PERS2 nom dat 3 pl no) | @(PERS2 nom dat 3 sg no)} .
+දෙහි  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 sg yes) .
+දෙහිවා  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 sg yes) .
+දෙහු  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 pl yes) .
+දෙහුවා  V   *   @(TRY-TRANS දෙ) @(VERVF fin) @(TENSE nonpast) @(PERS2 nom dat 2 pl yes) .
+
+
+,         COMMA  * .
+
+
+
+
+
+
+----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

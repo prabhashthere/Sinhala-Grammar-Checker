@@ -1,0 +1,28 @@
+### Sinhala.foma ###
+
+# Vowels
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [ ී ප න ් | ී ප ල ් ල ා | ී | ු න ් න ු | ු න ් න ෙ ම ි | ු න ් න ෙ ම ු | ු න ් න ෙ හ ි | ු න ් න ෙ හ ු | ු න ් න ේ ය | ු න ් න ා ය | ු න ් න ෝ ය | ි ය | ු න ් න හ ො ත ් | ු න ් න ේ ];
+
+
+
+read lexc m1.lexc
+define Lexicon;
+
+######### Rewrite rules
+
+define DeAClass           ෙ -> 0 || A _  "^" B ;
+
+
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define ClassE1Grammar 	Lexicon               .o.
+                        DeAClass              .o.
+               	        Cleanup;
+
+regex ClassE1Grammar;
+
+

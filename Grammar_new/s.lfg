@@ -1,0 +1,109 @@
+
+DEMO   SINHALA   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES ajectives.lfg adverb.lfg noun.lfg all_verb.lfg .
+  LEXENTRIES   (DEMO SINHALA) (AJECTIVE SINHALA) (ADVERB SINHALA) (NOUN SINHALA) (VERB SINHALA) (NOUN_ALL SINHALA).
+  RULES   (DEMO SINHALA).
+  TEMPLATES (DEMO SINHALA).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM LIV.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD.
+
+----
+
+DEMO   SINHALA   RULES (1.0)
+
+S --> NP:(^SUBJ)=! (!CASE)=nom;
+      VP:^=!.
+
+VP--> (NP: (^OBJ2)=! {(!CASE)=abl | (!CASE)=dat})
+	(NP: (^OBJ)=! {(!CASE)=nom | (!CASE)=acc})
+           ADV*: ! $ (^ ADJUNCT);
+          V:^=!.
+
+NP --> 	{PP: ! $ (^ ADJUNCT);   "ගස මත"
+	|
+	AP: ! $ (^ ADJUNCT) }*   "වේගයෙන් දුවන"
+	N:^=!.
+
+
+AP -->  ADV*: ! $ (^ ADJUNCT);     "වේගයෙන්"
+        {A | V: ^=! (!VFORM)=nonf}
+        (COMMA).
+
+PP --> {NP: ! $ (^ ADJUNCT);      "ගස"
+        P: ^ = !;        "මත"
+	|
+	N:^=!  (!CASE)= gen}.
+
+
+
+----
+DEMO   SINHALA   TEMPLATES (1.0)
+
+OPT-TRANS(P) = { (^ PRED) = 'P<(^SUBJ)(^OBJ)>'
+	          | (^ PRED) = 'P<(^SUBJ)>'
+		  | (^ PRED)='P<(^SUBJ)(^OBJ2)(^OBJ)>'| (^ PRED) = 'P' }.
+
+TENSE(T) = (^ TENSE) = T.
+
+PERS(P T L) =(^SUBJ NUMB) = T
+	    (^SUBJ PERS) = P
+            (^SUBJ LIV) = L.
+
+
+
+VERVF(F) = (^VFORM) =F.
+
+
+
+
+NP --> AP*: ! $ (^ ADJUNCT);
+       N:^=! .
+
+AP -->  {{ADV*: ! $ (^ ADJUNCT); | V:(!VFORM)=nonf} | A}
+        (COMMA).
+
+OP --> (NP: (^OBJ2)=!)
+        NP: (^OBJ)=!.
+
+VP --> ADV*: ! $ (^ ADJUNCT);
+       V:^=! (!VFORM)=fin.
+
+----
+DEMO SINHALA LEXICON (1.0)
+
+
+
+උඩ       P       * (^PRED)='උඩ'.
+යට       P      * (^PRED)='යට'.
+මත       P      * (^PRED)='මත'.
+තුළ       P      * (^PRED)='තුළ'.
+
+
+,         COMMA  * .
+
+
+
+
+
+
+----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

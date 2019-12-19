@@ -1,0 +1,37 @@
+### Sinhala.foma ###
+
+# Vowels
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [ ු ණ ු | ු න ෙ ම ි | ු න ෙ ම ු | ු න ෙ හ ි | ු න ෙ හ ු | ු න ේ ය | ු න ා ය | ු න ෝ ය | ි ය න ් | ි ය ල ් ල ා];
+
+define C [ව | ව ත ි | ව න ් න ී ය | ව න ් න ෙ ම ි | ව න ් න ෙ ම ු | ව න ් න ෙ හ ි | ව න ් න ෙ හ ු | ව න ් න ේ ය | ව න ් න ෝ ය | ව ම ි | ව ම ු | ව ය ි | ව හ ි | ව හ ු | ව න ් න ට | ව ම ි න ්];
+
+define D [ේ | ෙ ම ි | ෙ ම ු | ෙ හ ි | ෙ හ ු | ෙ ය ි | ෙ ත ි | ව ෙ ය ි | ව ෙ ත ි | ව ේ | ි ය | ු න ො ත ් | ු න ේ];
+
+define E [ි ද];
+
+
+read lexc f1.lexc
+define Lexicon;
+
+######### Rewrite rules
+
+###
+define UpadiAClass          ි -> 0 || A _ "^" [B | C | D | E] ;
+define UpadiBClass          උ -> ඉ || .#. _ ?* "^" [B | D | E] ;
+define UpadiCClass          ද -> 0 || A _ "^" E ;
+
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define ClassE1Grammar 	Lexicon                 .o.
+                        UpadiAClass             .o.
+                        UpadiBClass             .o.
+                        UpadiCClass             .o.
+               	        Cleanup;
+
+regex ClassE1Grammar;
+
+

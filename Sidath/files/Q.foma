@@ -1,0 +1,30 @@
+### Sinhala14.foma ###
+
+read lexc Q.lexc
+define Lexicon;
+
+
+
+define B [ ප න ් | ප ල ් ල ා | ි ම ි | ි ම ි ව ා | ි ම ු | ි ම ු ව ා | ි ය ි | ි ව ු | ග ෙ න |  ි ද ් ද ී | ි ත ි | ි ත ් ව ා]; 
+
+
+
+
+
+
+######### Rewrite rules
+
+define PClass1 න ් -> ඳ ||  _  "^" B ;
+
+
+
+
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define ClassQGrammar 	Lexicon            .o.
+                        PClass1          .o.
+               	        Cleanup;
+
+regex ClassQGrammar;

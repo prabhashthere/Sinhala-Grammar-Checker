@@ -1,0 +1,61 @@
+### Sinhala.foma ###
+
+# Vowels
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [ ු ණ ු | ූ | ු න ෙ ම ි | ු න ෙ ම ු | ු න ෙ හ ි | ු න ෙ හ ු | ු න ේ ය | ු න ා ය | ු න ෝ ය | ව ෙ ය ි | ව ෙ ත ි | ව ේ | ී | ි ය න ් | ි ය ල ් ල ා | ි ය | ු න ො ත ් | ු න ේ];
+
+define C [ව ත ි | ව න ් න ී ය | ව න ් න ෙ ම ි | ව න ් න ෙ ම ු | ව න ් න ෙ හ ි | ව න ් න ෙ හ ු | ව න ් න ේ ය | ව න ් න ෝ ය | ව ම ි | ව ම ු | ව ය ි | ව හ ි | ව හ ු | ව න ් න ට | ව ම ි න ්];
+
+
+
+read lexc g1.lexc
+define Lexicon;
+
+######### Rewrite rules
+
+###SeraseA,HesireA,WehereA,HeppeA,DikgesseA,PelabeA
+define SeraseAClass          ෙ -> 0 || .#. [ද ි ක ් | 0] A [ ැ | ෙ] A [ි | 0 | ැ | ්] A _  "^" [B | C] ;
+
+###SeraseB,HesireB,WehereB,HeppeB,DikgesseB
+define SeraseBClass          ැ -> 0 || .#. [ද ි ක ් | 0] A _ A [ි | 0 | ැ | ්] A  "^" C ;
+
+define HesireCClass           ි -> ු || .#. A A _ A  "^" C ;
+define WehereCClass          ැ -> 0 || .#. A A _ A  "^" C ;
+
+###DeneA,YedeA,ThereA,PeedeA
+define DeneAClass            ෙ -> 0 || .#. A [ ැ | ෙ | ේ | ෑ] A _  "^" [B | C] ;
+
+define DeneBClass            ැ -> 0 || .#. A _ A  "^" C ;
+
+###YedeB,PelabeB
+define YedeBClass            ෙ -> ො || .#. A _ A [්| 0] [A | 0]  "^" C ;
+
+define ThereBClass           ේ -> ෝ || .#. A _ A  "^" C ;
+define PeedeBClass           ෑ -> ා || .#. A _ A  "^" C ;
+
+define IpadeAClass           ෙ -> 0 || .#. ඉ A A _  "^" [B | C] ;
+define IpadeBClass           ඉ -> උ || .#. _ A A  "^" C ;
+
+
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define ClassE1Grammar 	Lexicon               .o.
+                        SeraseAClass          .o.
+                        SeraseBClass          .o.
+                        HesireCClass          .o.
+                        WehereCClass          .o.
+                        DeneAClass            .o.
+                        DeneBClass            .o.
+                        YedeBClass            .o.
+                        ThereBClass           .o.
+                        PeedeBClass           .o.
+                        IpadeAClass           .o.
+                        IpadeBClass           .o.
+               	        Cleanup;
+
+regex ClassE1Grammar;
+
+

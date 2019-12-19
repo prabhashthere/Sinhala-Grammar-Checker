@@ -1,0 +1,21 @@
+### Sinhala.foma ###
+
+# Vowels
+
+
+
+read lexc H.lexc
+define Lexicon;
+
+######### Rewrite rules
+
+
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define ClassOneGrammar 	Lexicon            .o.
+                        
+               	        Cleanup;
+
+regex ClassOneGrammar;

@@ -1,0 +1,33 @@
+### sinhalaC1.foma ###
+
+read lexc B.lexc
+define Lexicon;
+
+
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [|ී ව ා |ී ]; 
+
+define C [ප න ් | ප ල ් ල ා | ව |ව න ් න ට | ව ම ි න ්| ු ණ ු | ේ | ෙ ම ි | ෙ ම ු | ෙ හ ි | ෙ හ ු | ෙ ය ි | ෙ ත ි | ව ෙ ය ි | ව ෙ ත ි | ව ේ | ය | ව ා | ව න ් න  ේ | ි ය |  ව ා | ව න ් න ේ]; 
+
+define D [ද | ස | ග | ට | ත ];
+
+
+define CBRule1  ි -> 0 || _ "^" [B | C | D] ;
+define CBRule2  අ -> ඇ ||  _ A "^" [C|D] ;
+define CBRule3  [..] -> ැ || A _ A "^" [C|D] ;
+define CBRule4  D -> 0 || _ "^" [D];
+
+
+define Cleanup "^" -> 0;
+
+define B1Grammar 	Lexicon .o.
+		CBRule1		.o.
+		CBRule3		.o.
+              	CBRule2		.o.
+		CBRule4		.o.
+		Cleanup;
+
+regex B1Grammar;
+
+

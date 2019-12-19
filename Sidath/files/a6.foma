@@ -1,0 +1,28 @@
+### Sinhala.foma ###
+
+# Vowels
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [ ු ණ ු | ූ | ෙ ම ි | ෙ ම ු | ෙ හ ි | ෙ හ ු | ා ය | ේ ය | ෝ ය | ේ | ෙ ය ි | ෙ ත ි | ව ෙ ය ි | ව ෙ ත ි | ව ේ | ි ය | ු ව ො ත ් | ු ව ේ];
+
+
+
+read lexc a6.lexc
+define Lexicon;
+
+
+define PalandaClass        [..]  -> ැ || .#. A _ A A ් A  "^" B ;
+define BassaClass        [..]  -> ැ || A _ A ් A  "^" B ;
+define AndaClass           අ  -> ඇ || .#. _ A ් A  "^" B ;
+
+define Cleanup "^" -> 0;
+
+define ClassOneGrammar 	Lexicon             .o.
+                        PalandaClass        .o.
+                        BassaClass          .o.
+                        AndaClass           .o.
+               	        Cleanup;
+
+regex ClassOneGrammar;
+
+

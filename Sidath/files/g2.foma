@@ -1,0 +1,30 @@
+### Sinhala.foma ###
+
+# Vowels
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [ ු ණ ු | ූ | ු න ෙ ම ි | ු න ෙ ම ු | ු න ෙ හ ි | ු න ෙ හ ු | ු න ේ ය | ු න ා ය | ු න ෝ ය | ව ෙ ය ි | ව ෙ ත ි | ව ේ | ී | ි ය න ් | ි ය ල ් ල ා];
+
+define C [ව ත ි | ව න ් න ී ය | ව න ් න ෙ ම ි | ව න ් න ෙ ම ු | ව න ් න ෙ හ ි | ව න ් න ෙ හ ු | ව න ් න ේ ය | ව න ් න ෝ ය | ව ම ි | ව ම ු | ව ය ි | ව හ ි | ව හ ු | ව න ් න ට | ව ම ි න ්];
+
+
+
+read lexc g2.lexc
+define Lexicon;
+
+######### Rewrite rules
+
+###
+define ElambeClass          ෙ -> 0 || .#. [ත ි| 0] [එ| ඈ| A] [ ි| ැ| 0] [A | 0] [ ි| ැ| ්| 0] A _  "^" [B | C] ;
+
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define ClassE1Grammar 	Lexicon               .o.
+                        ElambeClass           .o.
+               	        Cleanup;
+
+regex ClassE1Grammar;
+
+

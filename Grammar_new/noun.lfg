@@ -1,0 +1,52 @@
+NOUN SINHALA LEXICON (1.0)
+
+ලස්සන N   *  {(^LIV)=no (^PRED)= 'ලස්සන' (^PERS)=3 (^NUMB)=sg (^CASE)=nom  | (^LIV)=no (^PRED)= 'ලස්සන' (^PERS)=3 (^NUMB)=sg (^CASE)=acc  | (^LIV)=no (^PRED)= 'ලස්සන' (^PERS)=3 (^NUMB)=sg (^CASE)=voc  | (^LIV)=no (^PRED)= 'ලස්සන' (^PERS)=3 } ;
+      A   * (^PRED)= 'ලස්සන';
+      ADV   * (^PRED)= 'ලස්සන'.
+
+මිටි N   *  {(^LIV)=no (^PRED)= 'මිටි' (^PERS)=3 (^NUMB)=pl (^CASE)=nom  | (^LIV)=no (^PRED)= 'මිටි' (^PERS)=3 (^NUMB)=pl (^CASE)=acc  | (^LIV)=no (^PRED)= 'මිටි' (^PERS)=3 (^NUMB)=pl (^CASE)=voc  | (^LIV)=no (^PRED)= 'මිටි' (^PERS)=3 };
+    A   *  (^PRED)= 'මිටි'.
+
+මහත N   * (^PRED)= 'මහත';
+     A   * (^PRED)= 'මහත' .
+
+කැකුළු N   *  {(^LIV)=no (^PRED)= 'කැකුළු' (^PERS)=3 (^NUMB)=pl (^CASE)=voc  | (^LIV)=no (^PRED)= 'කැකුළු' (^PERS)=3 (^NUMB)=pl (^CASE)=nom  | (^LIV)=no (^PRED)= 'කැකුළු' (^PERS)=3 };
+      A   *  (^PRED)= 'කැකුළු'.
+
+වේගයෙන් N   *  {(^LIV)=no (^PRED)= 'වේග' (^PERS)=3 (^NUMB)=sg (^CASE)=abl  | (^LIV)=no (^PRED)= 'වේග' (^PERS)=3 (^NUMB)=sg };
+          ADV * (^PRED)= 'වේග'.
+
+වාහන N   *  {(^LIV)=no (^PRED)= 'වාහන' (^PERS)=3 (^NUMB)=pl (^CASE)=nom  | (^LIV)=no (^PRED)= 'වාහන' (^PERS)=3 (^NUMB)=pl (^CASE)=acc  | (^LIV)=no (^PRED)= 'වාහන' (^PERS)=3 (^NUMB)=pl (^CASE)=voc  | (^LIV)=no (^PRED)= 'වාහන' (^PERS)=3  | (^LIV)=no (^PRED)= 'වාහන' (^PERS)=3 (^NUMB)=pl (^CASE)=voc  | (^LIV)=no (^PRED)= 'වාහන' (^PERS)=3 (^NUMB)=pl (^CASE)=acc  | (^LIV)=no (^PRED)= 'වාහන' (^PERS)=3 (^NUMB)=pl (^CASE)=nom  | (^LIV)=no (^PRED)= 'වාහන' (^PERS)=3 }.
+වාහනය N   *  {(^LIV)=no (^PRED)= 'වාහන' (^PERS)=3 (^NUMB)=sg (^CASE)=nom  | (^LIV)=no (^PRED)= 'වාහන' (^PERS)=3 (^NUMB)=sg (^CASE)=acc  | (^LIV)=no (^PRED)= 'වාහන' (^PERS)=3 (^NUMB)=sg (^CASE)=voc }.
+
+සින්දු N   *  {(^LIV)=no (^PRED)= 'සින්දු' (^PERS)=3 (^NUMB)=pl (^CASE)=nom  | (^LIV)=no (^PRED)= 'සින්දු' (^PERS)=3 (^NUMB)=pl (^CASE)=acc  | (^LIV)=no (^PRED)= 'සින්දු' (^PERS)=3 (^NUMB)=pl (^CASE)=voc  | (^LIV)=no (^PRED)= 'සින්දු' (^PERS)=3 }.
+නැටුමක් N   *  {(^LIV)=no (^PRED)= 'නැටුම්' (^PERS)=3 (^NUMB)=sg (^CASE)=nom  | (^LIV)=no (^PRED)= 'නැටුම්' (^PERS)=3 (^NUMB)=sg (^CASE)=acc }.
+නැටුම් N   *  {(^LIV)=no (^PRED)= 'නැටුම්' (^PERS)=3 (^NUMB)=pl (^CASE)=nom  | (^LIV)=no (^PRED)= 'නැටුම්' (^PERS)=3 (^NUMB)=pl (^CASE)=acc  | (^LIV)=no (^PRED)= 'නැටුම්' (^PERS)=3 (^NUMB)=pl (^CASE)=voc  | (^LIV)=no (^PRED)= 'නැටුම්' (^PERS)=3 }.
+
+ගෙදර	   N       * (^PRED)='ගෙදර'    (^NUMB)=sg (^LIV)=no   (^PERS)=3   (^CASE)=nom.
+බත්	   N       *(^PRED)= 'බත'        (^NUMB)=pl  (^LIV)=no   (^PERS)=3    (^CASE)=nom. 
+ළමයා      N       *(^PRED)= 'ළමයා'    (^NUMB)=sg (^LIV)=yes (^PERS)=3 (^CASE)=nom.
+ළමයි     N       *(^PRED)= 'ළමයා'    (^NUMB)=pl (^LIV)=yes (^PERS)=3 (^CASE)=nom.
+ළමයාගේ     N      * (^PRED)='ළමයා'    (^NUMB)=sg (^LIV)=yes   (^PERS)=3   (^CASE)=gen.
+ළමයාට       N      * (^PRED)='ළමයා'    (^NUMB)=sg (^LIV)=yes   (^PERS)=3   (^CASE)=dat.
+ළමයාගෙන්    N      * (^PRED)='ළමයා'    (^NUMB)=sg (^LIV)=yes   (^PERS)=3   (^CASE)=abl.
+පූසා        N       *(^PRED)= 'පූසා'    (^NUMB)=sg (^LIV)=yes (^PERS)=3 (^CASE)=nom.
+මම        N       *(^PRED)= 'මම'        (^NUMB)=sg (^LIV)=yes (^PERS)=1    (^CASE)=nom.
+අපි        N       * (^PRED)='අපි'         (^NUMB)=pl  (^LIV)=yes (^PERS)=1      (^CASE)=nom.
+නුඹ       N       *(^PRED)= 'නුඹ'        (^NUMB)=sg (^LIV)=yes (^PERS)=2    (^CASE)=nom.
+නුඹලා        N       * (^PRED)='නුඹලා'         (^NUMB)=pl  (^LIV)=yes (^PERS)=2      (^CASE)=nom.
+ගස        N      *(^PRED)= 'ගස'         (^NUMB)=sg (^LIV)=no   (^PERS)=3     (^CASE)=nom.
+ගස්        N      *(^PRED)= 'ගස'         (^NUMB)=pl (^LIV)=no   (^PERS)=3     (^CASE)=nom.
+මේසය      N      *(^PRED)= 'මේසය'         (^NUMB)=sg (^LIV)=no   (^PERS)=3     (^CASE)=nom.
+පාසල      N      *(^PRED)= 'පාසල'     (^NUMB)=sg (^LIV)=no   (^PERS)=3    (^CASE)=nom.
+පැන්සල     N       *(^PRED)= 'පැන්සල' (^NUMB)=sg (^LIV)=no   (^PERS)=3   (^CASE)=acc.
+හට්ටිය      N       *(^PRED)= 'හට්ටිය'   (^NUMB)=sg (^LIV)=no   (^PERS)=3    (^CASE)=nom.
+කුස්සිය       N       *(^PRED)= 'කුස්සිය'   (^NUMB)=sg (^LIV)=no   (^PERS)=3   (^CASE)=nom.
+කුස්සියේ    N      * (^PRED)='කුස්සිය'       (^NUMB)=sg (^LIV)=no   (^PERS)=3 (^CASE)=gen.
+කුටියේ    N      * (^PRED)='කුටිය'       (^NUMB)=sg (^LIV)=no   (^PERS)=3 (^CASE)=gen.
+පොතක්      N       *(^PRED)= 'පොත'   (^NUMB)=sg (^LIV)=no   (^PERS)=3    (^CASE)=nom.
+පොත      N       *(^PRED)= 'පොත'   (^NUMB)=sg (^LIV)=no   (^PERS)=3    (^CASE)=nom.
+පොතෙන්      N       *(^PRED)= 'පොත'   (^NUMB)=sg (^LIV)=no   (^PERS)=3    (^CASE)=abl.
+ඔහු      N       *(^PRED)= 'ඔහු'    (^NUMB)=sg (^LIV)=yes (^PERS)=3 (^CASE)=nom.
+ඔබ      N       *(^PRED)= 'ඔබ'    (^NUMB)=sg (^LIV)=yes (^PERS)=3 (^CASE)=nom.
+----

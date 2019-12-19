@@ -1,0 +1,42 @@
+### Sinhala.foma ###
+
+# Vowels
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [ ු ණ ු | ූ | ු ව ෙ ම ි | ු ව ෙ ම ු | ු ව ෙ හ ි | ු ව ෙ හ ු | ු ව ා ය | ු ව ේ ය | ු ව ෝ ය | ව ේ | ෙ ම ි | ෙ ම ු | ෙ ය ි | ෙ හ ු | ෙ ත ි | ෙ හ ි | ව ෙ ය ි | ව ෙ ත ි | ේ | ි ය | ු ව ො ත ් | ු ව ේ ];
+
+
+
+read lexc a5.lexc
+define Lexicon;
+
+
+define PathuraClass1         [..] -> ැ || .#. A _ A ?*  "^" B ;
+define PathuraClass2          ු  -> ි || .#. A ැ A _ ?* "^" B ;
+define AkulaClass1             අ -> ඇ || .#. _ ?*  "^" B ;
+define UduraClass1             උ -> ඉ || .#. _ ?*  "^" B ;
+define AkulaClass2             ු -> ි || .#. [ඇ | ඉ] A _ ?* "^" B ;
+define UganwaClass2          [..] -> ැ || .#. ඉ A _ A ?* "^" B ;
+define KalaththaClass2       [..] -> ැ || .#. A ැ A _ A ් A "^" B ;
+define HadaaraClass2           ා -> ෑ || .#. A ැ A _ A "^" B ;
+define PupuraClass1            ු -> ි || .#. A _ A ?* "^" B ;
+define PupuraClass2            ු -> ි || .#. A ි A _ A ?* "^" B ;
+
+define Cleanup "^" -> 0;
+
+define ClassOneGrammar 	Lexicon                .o.
+                        PathuraClass1          .o.
+                        PathuraClass2          .o.
+                        AkulaClass1            .o.
+                        UduraClass1            .o.
+                        AkulaClass2            .o.
+                        UganwaClass2           .o.
+                        KalaththaClass2        .o.
+                        HadaaraClass2          .o.
+                        PupuraClass1           .o.
+                        PupuraClass2           .o.
+               	        Cleanup;
+
+regex ClassOneGrammar;
+
+

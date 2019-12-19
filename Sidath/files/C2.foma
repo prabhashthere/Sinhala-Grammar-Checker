@@ -1,0 +1,38 @@
+### sinhalaC1.foma ###
+
+read lexc C2.lexc
+define Lexicon;
+
+
+define A [ක | ​ඛ | ග | ​ඝ | ච | ​ඡ | ජ | ට | ඨ | ඩ | ඪ | ණ | ත | ද | ධ | න | ප | ඵ | බ | භ | ම | ය | ර | ල | ව | ශ | ෂ | ස | හ | ළ | ​ෆ | ඟ | ඬ | ඳ | ඹ];
+
+define B [ව ත ි | ව න ් න ී ය |ව න ් න ෙ ම ි | ව න ් න ෙ ම ු | ව න ් න ෙ හ ි | ව න ් න ේ ය |
+ ව න ් න ෝ ය | ව ම ි | ව ම ු | ව ය ි | ව හ ි | ව හ ු | ව න ් න ට | ව ම ි න ් | ව න ් න ේ ];    
+
+define C [ප න ් | ප ල ් ල ා |ු ණ ු  | ෙ හ ි | ෙ හ ු | ව ෙ ය ි | ව ෙ ත ි | ව ේ]; 
+
+define D [ ් බ | ් බ ෙ ම ි| ් බ ෙ ම ු | ් බ ෙ හ ි | ් බ ෙ හ ු | ් බ ේ ය | ් බ ා ය | ් බ ෝ ය  | ් බ ො ත ් | ් බ ු ව ේ];
+
+
+
+######### Rewrite rules
+
+define CCRule1  ි -> 0 || _ "^" [B | C | D] ;
+define CCRule2  ඹ -> ම ් බ || _ "^" [B ];
+define CCRule5  ඹ -> ම || _ "^" [D];
+
+
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define C1Grammar 	Lexicon .o.
+		CCRule1		.o.
+              
+		CCRule2		.o.
+		CCRule5		.o.
+		Cleanup;
+
+regex C1Grammar;
+
+

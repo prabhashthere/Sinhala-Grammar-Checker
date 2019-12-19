@@ -1,0 +1,31 @@
+### Sinhala14.foma ###
+
+read lexc N.lexc
+define Lexicon;
+
+
+
+define B [ ව ු |ව ් ව ෙ ම ි | ව ු ව ෙ ම ු  |​ ව ් ව ා ය |​ව ් ව ෝ ය |  ව ් ව ේ |  ව ් ව ො ත ් |​ ව ් ව ෝ ය | ​ ව ් ව ේ ය | ​ ව ් ව ෙ ​ හ ු | ​ ව ් ව ෙ ​ හ ි]; 
+define D [ී | ී ​ප න ් |  ී ප ල ් ල ා | ි ය ];
+
+
+
+
+
+######### Rewrite rules
+
+define PClass1 ො -> ි ||  _  "^" B ;
+define PClass2 ො -> 0 ||  _  "^" D ;
+
+
+
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define ClassFifGrammar 	Lexicon            .o.
+                        PClass1          .o.
+                        PClass2          .o.
+               	        Cleanup;
+
+regex ClassFifGrammar;

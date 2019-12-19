@@ -1,0 +1,36 @@
+### sinhalaC1.foma ###
+
+read lexc I1.lexc
+define Lexicon;
+
+
+
+
+define B [ි ත  ි|  ි ත ් ව ා | ු | ි න ් |  ි ල ් ල ා | ි ම ි | ි ම ු | ි ම ි ව ා  |  ි ම ු ව ා |ි ය ි | ි ව ු | ි ම ි න ්| ු ල ැ බ ූ |ි ද ් ද ී];    
+
+define C [ ත ් | ත ් ත ෙ ම ි | ත ් ත ෙ ම ු | ත ් ත ෙ හ ි | ත ් ත ෙ හ ු | ත ් ත ා ය | ත ් ත ේ ය | ත ් ත ෝ ය | ත | ත ් ත ො ත ් | ත ් ත ේ];
+
+define D [ු ණ ු | ූ | ු ව ෙ ම ි | ු ව ෙ ම ු | ු ව ෙ හ ි | ු ව ෙ හ ු | ු ව ා ය |  ු ව ේ ය | ු ව ෝ ​ ය | ේ | ෙ ම ි | ෙ ම ු | ෙ හ ි | ෙ හ ු | ෙ ය ි| ෙ ත ි | ව ෙ ය ි | ව ෙ ත ි | ව ේ ];
+
+
+
+######### Rewrite rules
+
+define CIRule1  ් -> 0 || _ "^" [B | C | D] ;
+define CIRule2  න -> 0 || _ "^" C ;
+#define CIRule3  [..] -> ෙ || _ "^" C ;
+define CIRule4 [..] -> ැ || ග _ න "^" D ;
+
+# To Cleanup: remove morpheme boundaries
+define Cleanup "^" -> 0;
+
+define I1Grammar 	Lexicon .o.
+		CIRule1		.o.
+		CIRule2		.o.
+              #	CIRule3		.o.
+		CIRule4		.o.
+		Cleanup;
+
+regex I1Grammar;
+
+
